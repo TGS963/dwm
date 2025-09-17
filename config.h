@@ -71,6 +71,9 @@ static const char *filemanagercmd[] = { "doublecmd", NULL };
 static const char *volupcmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *voldowncmd[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 static const char *mutecmd[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *screenshotfilecmd[] = { "sh", "-c", "maim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png", NULL };
+static const char *screenshotselectcmd[] = { "sh", "-c", "maim --select ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png", NULL };
+static const char *screenshotclipcmd[] = { "sh", "-c", "maim -s | xclip -selection clipboard -t image/png -i", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -88,6 +91,9 @@ static const Key keys[] = {
 	{ 0,                       		XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
 	{ 0,                       		XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
 	{ 0,                       		XF86XK_AudioMute,        spawn, {.v = mutecmd } },
+	{ MODKEY,                       XK_Print,  spawn,          {.v = screenshotfilecmd } },
+	{ MODKEY|ShiftMask,             XK_Print,  spawn,          {.v = screenshotselectcmd } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = screenshotclipcmd } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,             			XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
