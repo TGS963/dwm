@@ -1,0 +1,21 @@
+# Compiled binaries
+dwm
+
+# Object files
+*.o
+
+# Generated config file (if you want to ignore it)
+# config.h
+
+# Backup files
+*~
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.code-workspace
